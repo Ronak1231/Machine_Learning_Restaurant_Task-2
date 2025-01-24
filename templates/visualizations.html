@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualizations</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="visualization-container">
+        <h1>Data Visualizations</h1>
+        
+        <!-- Back to Prediction Link -->
+        <a href="/recommendation" class="nav-link">← Back to Prediction</a>
+
+        <!-- Custom Dropdown -->
+        <div class="custom-select">
+            <div class="select-selected">-- Choose a visualization --</div>
+            <div class="select-items">
+                {% for filename in visualizations %}
+                <div data-index="{{ loop.index0 }}">{{ loop.index }}: {{ filename.split('.')[0] }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Visualization Images -->
+        <div class="images">
+            {% for filename in visualizations %}
+                <img src="/static/images/visualizations/{{ filename }}" 
+                    alt="{{ filename }}" 
+                    class="visualization-image {% if not loop.first %}hidden{% endif %}" 
+                    loading="lazy">
+            {% endfor %}
+        </div>
+    </div>
+
+    <footer>
+        <a href="https://github.com/Ronak1231/cognifyz-Technologies_Task-2.git" class="github-link" target="_blank">Source Code</a>
+    </footer>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

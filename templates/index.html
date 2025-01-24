@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Recommendation System</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        body {
+            background: url('/static/images/background.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Arial', sans-serif; /* Use the Roboto font */
+            color: #fff;
+        }
+
+        /* Centralized container for content */
+        .container, .visualization-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 80px;
+            background: rgba(0, 0, 0, 0.5555); /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgb(255, 251, 251);
+            text-align: center;
+            opacity: 0; /* Start with the container invisible */
+            animation: fadeInBackground 1s ease-in-out forwards; /* Apply fade-in effect */
+        }
+
+        /* Recommendations table styling */
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            margin: 20px auto; /* Center the table within the container */
+            background: rgba(10, 10, 10, 0.8); /* Darker background for the table */
+            border-radius: 8px;
+            overflow: hidden; /* Ensure border radius applies to the whole table */
+            box-shadow: 0 2px 10px rgba(255, 246, 246, 0.329); /* Subtle shadow for depth */
+        }
+
+        thead {
+            background-color: #333; /* Dark background for table header */
+            color: #fff; /* White text for header */
+        }
+
+        th, td {
+            padding: 15px; /* Add padding to cells */
+            text-align: left; /* Align text to the left */
+            color: #fff; /* White text for cells */
+            border-bottom: 1px solid #444; /* Subtle border between rows */
+        }
+
+        th {
+            text-transform: uppercase; /* Capitalize header text */
+            letter-spacing: 1px;
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* Highlight row on hover */
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none; /* Remove bottom border for the last row */
+        }
+
+        /* Fade-in animation for the container background */
+        @keyframes fadeInBackground {
+            0% {
+                opacity: 0; /* Start from invisible */
+            }
+            100% {
+                opacity: 1; /* End at fully visible */
+            }
+        }
+
+        /* Form styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Input field styling */
+        .input-field {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            border-color: #4f46e5; /* Change border color on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        /* Button styling */
+        button {
+            padding: 10px;
+            background-color: #007bff; /* Primary button color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+
+        /* Navigation Link Styling */
+        .nav-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #007bff; /* Primary link color */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+
+        /* Footer styling */
+        footer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .github-link {
+            color: #ff6b6b;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .github-link:hover {
+            background-color: #ff4a4a; /* Darker shade on hover */
+            color: #fff;
+        }
+
+        .logout-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #dc3545; /* Bootstrap danger color */
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .logout-button:hover {
+            background-color: #c82333; /* Darker shade on hover */
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Restaurant Recommendation System</h1>
+        <form action="/recommendation" method="POST">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+            <label for="cuisines">Cuisines (comma-separated):</label>
+            <input type="text" id="cuisines" name="cuisines" required>
+            <label for="price_range">Price Range:</label>
+            <select id="price_range" name="price_range" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+            <label for="rating">Aggregate Rating:</label>
+            <input type="number" step="0.1" id="rating" name="rating" required>
+            <label for="votes">Votes:</label>
+            <input type="number" id="votes" name="votes" required>
+            <button type="submit">Recommend</button>
+        </form>
+
+        {% if recommendations is not none and recommendations|length > 0 %}
+            <h2>Recommendations:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Restaurant Name</th>
+                        <th>Similarity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for restaurant in recommendations %}
+                        <tr>
+                            <td>{{ restaurant['Restaurant Name'] }}</td>
+                            <td>{{ restaurant['Similarity'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h2>No recommendations available.</h2>
+        {% endif %}
+
+        <h3>Model Performance</h3>
+        <p>Mean Squared Error: {{ mse if mse is not none else 'Not available' }}</p>
+        <a href="/visualizations" class="nav-link">View Visualizations</a>
+    </div>
+
+    <!-- Logout Button -->
+    <a href="/logout" class="logout-button">Logout</a>
+</body>
+</html>
