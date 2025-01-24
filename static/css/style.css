@@ -1,0 +1,182 @@
+/* Full-screen background styling */
+body {
+    background: url('/static/images/background.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif; /* Use the Roboto font */
+    color: #fff;
+}
+
+/* Centralized container for content */
+.container, .visualization-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.555); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    box-shadow: 0 2px 10px rgb(255, 246, 246); /* Subtle shadow for depth */
+
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Input field styling */
+.input-field {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+    border-color: #4f46e5; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Button styling */
+button {
+    padding: 10px;
+    background-color: #007bff; /* Primary button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0. 3s ease;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Navigation Link Styling */
+.nav-link {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 15px;
+    background-color: #007bff; /* Primary link color */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Footer styling */
+footer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.github-link {
+    color: #ff6b6b;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 2px 10px rgba(255, 246, 246, 0.573); /* Subtle shadow for depth */
+
+}
+
+.github-link:hover {
+    background-color: #ff4a4a; /* Darker shade on hover */
+    color: #fff;
+}
+
+/* Enhanced Dropdown Styling */
+.custom-select {
+    position: relative;
+    display: inline-block;
+    width: 100%; /* Make dropdown wide */
+    margin: 20px auto; /* Adds spacing above the dropdown */
+    box-shadow: 0 2px 10px rgba(255, 246, 246, 0.6); /* Subtle shadow for depth */
+
+}
+
+.select-selected {
+    background-color: #333; /* Dark background for dropdown */
+    padding: 12px;
+    border: 1px solid #555; /* Subtle border for structure */
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+}
+
+.select-selected:after {
+    content: "\25BC"; /* Down arrow */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ccc;
+}
+
+.select-items {
+    position: absolute;
+    background-color: #444;
+    border: 1px solid #555;
+    border-radius: 5px;
+    z-index: 99;
+    width: 100%;
+    display: none; /* Hidden by default */
+}
+
+.select-items div {
+    padding: 10px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.select-items div:hover {
+    background-color: #555; /* Change background on hover */
+}
+
+/* Image styling */
+.images {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px; /* Adds space between dropdown and images */
+}
+
+.visualization-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Fade-in animation for elements */
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
