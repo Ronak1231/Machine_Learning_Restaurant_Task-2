@@ -59,17 +59,28 @@ python app.py
 
 ```
 Machine_Learning_Restaurant_Task-2/
-│
-├── Dataset.csv                         # Dataset file
-├── app.py                               # Main application file (Flask API)
-├── requirements.txt                     # Dependencies list
-├── static/                              # Static files (CSS, images)
-│   ├── style.css                        # Stylesheet for UI
-├── templates/                           # HTML templates
-│   ├── index.html                       # Main UI for the web app
-│   ├── result.html                       # Display predictions
-├── LICENSE                              # License file
-├── README.md                            # Project documentation
+
+├── Dataset.csv                     # Dataset file
+├── Static
+│   ├── Images
+|        ├── Visualization
+│   ├── css
+|        ├── style.css
+│   ├── js
+|        ├── script.js
+|
+├── Trail
+│   ├── Restaurant_Task-1
+|
+├── templates
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── visualization.html
+├── app.py
+├── requirements.txt
+├── LICENSE
+├── README.md                                 # Project documentation
 ```
 
 ---
