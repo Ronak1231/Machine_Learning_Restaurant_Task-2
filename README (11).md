@@ -70,13 +70,14 @@ Machine_Learning_Restaurant_Task-2/
 |        ├── script.js
 |
 ├── Trail
-│   ├── Restaurant_Task-1
+│   ├── Restaurant_Task-2
 |
 ├── templates
 │   ├── index.html
 │   ├── login.html
 │   ├── register.html
 │   ├── visualization.html
+|
 ├── app.py
 ├── requirements.txt
 ├── LICENSE
